@@ -10,4 +10,5 @@ Player.prototype.hurt = function (damage) {
 	if(this.life <= 0) {
 		this.status = 'dead';
 	}
+	return this.status != 'alive';
 };

@@ -7,4 +7,7 @@ function Player (name, life, attack) {
 
 Player.prototype.hurt = function (damage) {
 	this.life -= damage;
+	if(this.life <= 0) {
+		this.status = 'dead';
+	}
 };

@@ -16,5 +16,10 @@ describe('Player', function () {
 		expect(player.life).toEqual(60);
 		player.hurt(20);
 		expect(player.life).toEqual(40);
+	});
+
+	it('shoule be dead when have no life left', function () {
+		player.hurt(100);
+		expect(player.status).toEqual('dead');
 	})
 });

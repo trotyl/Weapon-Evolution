@@ -5,8 +5,8 @@ describe('Game', function () {
 		console = {log: null};
 		spyOn(console, 'log');
 
-		player_1 = new Player('张三', 100, 10);
-		player_2 = new Player('李四', 200, 4);
+		player_1 = new Player('张三', 100, 50);
+		player_2 = new Player('李四', 200, 20);
 
 		game = new Game(console, player_1, player_2);
 	});
@@ -20,6 +20,13 @@ describe('Game', function () {
 
 	it('should get the right result', function () {
 		game.play();
+		expect(console.log).toHaveBeenCalledWith('张三攻击了李四,李四受到了50点伤害,李四剩余生命：150');
+		expect(console.log).toHaveBeenCalledWith('李四攻击了张三,张三受到了20点伤害,张三剩余生命：80');
+		expect(console.log).toHaveBeenCalledWith('张三攻击了李四,李四受到了50点伤害,李四剩余生命：100');
+		expect(console.log).toHaveBeenCalledWith('李四攻击了张三,张三受到了20点伤害,张三剩余生命：60');
+		expect(console.log).toHaveBeenCalledWith('张三攻击了李四,李四受到了50点伤害,李四剩余生命：50');
+		expect(console.log).toHaveBeenCalledWith('李四攻击了张三,张三受到了20点伤害,张三剩余生命：40');
+		expect(console.log).toHaveBeenCalledWith('张三攻击了李四,李四受到了50点伤害,李四剩余生命：0');
 		expect(console.log).toHaveBeenCalledWith('李四被打败了.');
 	});
 

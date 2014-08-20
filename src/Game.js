@@ -13,6 +13,7 @@ Game.prototype.play = function() {
 			this.status = 'over';
 			this.console.log(defender.name + '被打败了.');
 		}
+		this.turn = !this.turn;
 	}
 };
 

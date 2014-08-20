@@ -9,10 +9,11 @@ Game.prototype.play = function() {
 	while(this.status == 'run') {
 		var attacker = this.players[this.turn? 0: 1];
 		var defender = this.players[!this.turn? 0: 1];
-		var over = defender.hurt(attacker.attack);
-		var log = attacker.name + '攻击了' + defender.name + ',' + defender.name + '受到了' + attacker.attack 
-			+ '点伤害,' + defender.name + '剩余生命：' + defender.life;
-		this.console.log(log);
+
+		var over = defender.hurt(Game.getDamage(attacker,defender));
+
+		this.console.log(Game.getLog(attacker, defender));
+
 		if(over) {
 			this.status = 'over';
 			this.console.log(defender.name + '被打败了.');
@@ -21,3 +22,18 @@ Game.prototype.play = function() {
 	}
 };
 
+Game.getLog = function(attacker, defender) {
+	var result = attacker.role + attacker.name;
+	if(attacker.weapon) {
+		result += '用' + attacker.weapon.name;
+	}
+	result += '攻击了' + defender.role + defender.name + ',' + defender.name + '受到了' 
+		+ Game.getDamage(attacker,defender) + '点伤害,' + defender.name + '剩余生命：' + defender.life;
+	return result;
+};
+
+Game.getDamage = function (attacker, defender) {
+	return attacker.attack 
+		+ (attacker.weapon? attacker.weapon.damage: 0) 
+		- (defender.shield? defender.shield.defence: 0);
+};

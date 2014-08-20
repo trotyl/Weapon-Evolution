@@ -10,4 +10,11 @@ describe('Player', function () {
 		expect(player.life).toEqual(100);
 		expect(player.attack).toEqual(10);
 	});
+
+	it('should get hurt when be attacked', function () {
+		player.hurt(40);
+		expect(player.life).toEqual(60);
+		player.hurt(20);
+		expect(player.life).toEqual(40);
+	})
 });

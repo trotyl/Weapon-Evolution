@@ -5,6 +5,6 @@ function Player (name, life, attack) {
 	this.status = "alive";
 }
 
-Player.hurt = function (damage) {
-
+Player.prototype.hurt = function (damage) {
+	this.life -= damage;
 };

@@ -10,7 +10,7 @@ Game.prototype.play = function() {
 		var attacker = this.players[this.turn? 0: 1];
 		var defender = this.players[!this.turn? 0: 1];
 
-		var over = defender.hurt(Game.getDamage(attacker,defender));
+		var over = defender.getHurt(attacker);
 
 		this.console.log(Game.getLog(attacker, defender));
 

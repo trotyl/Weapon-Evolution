@@ -46,8 +46,9 @@ Player.prototype.getAttackLog = function(defender) {
 	var result = '';
 	for(var i in this.extra) {
 		var extra = this.extra[i];
-		if(extra.)
-		result += Log.getExtra(this, defender, this.extra[i]);
+		if(extra) {
+            result += Log.getExtra(this, defender, this.extra[i]);
+        }
 		if(i != this.extra.length - 1) {
 			result += '\n';
 		}

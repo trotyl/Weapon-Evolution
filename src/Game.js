@@ -3,22 +3,37 @@ function Game (console, player_1, player_2) {
 	this.players = [player_1, player_2];
 	this.turn = true;
 	this.status = 'run';
+	this.round = 1;
 }
 
 Game.prototype.play = function() {
-	while(this.status == 'run') {
+	while(this.status == 'run' && this.round < 10) {
 		var attacker = this.players[this.turn? 0: 1];
 		var defender = this.players[!this.turn? 0: 1];
 
-		var over = defender.hurt(Game.getDamage(attacker,defender));
+        var beforeResult = attacker.doAttack(defender, this.round);
+        if(beforeResult) {
+            for(var i in beforeResult) {
+                this.console.log(beforeResult[i]);
+            }
+        }
 
-		this.console.log(Game.getLog(attacker, defender));
+        if(attacker.status != 'alive') {
+            this.status = 'over';
+            this.console.log(Log.getDeath(attacker));
+            return;
+        }
 
-		if(over) {
-			this.status = 'over';
-			this.console.log(defender.name + '被打败了.');
+		var afterResult = defender.getHurt(attacker);
+		this.console.log(afterResult);
+
+		if(defender.status != 'alive') {
+            this.status = 'over';
+            this.console.log(Log.getDeath(defender));
+            return;
 		}
 		this.turn = !this.turn;
+        this.round++;
 	}
 };
 

@@ -30,7 +30,45 @@ describe('Player', function () {
 
     it('should be hurt each round if got poisoned', function () {
         player.extra.push(new Extra('toxin', 2));
+        player.doAttack(attacker, 1);
+        expect(player.life).toEqual(98);
+        player.doAttack(attacker, 2);
+        expect(player.life).toEqual(96);
+        player.doAttack(attacker, 3);
+        expect(player.life).toEqual(94);
+        player.doAttack(attacker, 4);
+        expect(player.life).toEqual(92);
+    });
+
+    it('should be hurt each round if got fired', function () {
+        player.extra.push(new Extra('flame', 2));
+        player.doAttack(attacker, 1);
+        expect(player.life).toEqual(98);
+    });
+
+    it('should not attack each 2 round if got frozen', function () {
+        player.extra.push(new Extra('frozen'));
+        expect(player.doAttack(attacker, 1)).toEqual([]);
+        expect(player.doAttack(attacker, 2)).toEqual([]);
+        expect(player.doAttack(attacker, 3)).toEqual(['张三冻得直哆嗦, 没有击中李四']);
+
+    });
+
+    xit('should be hurt each round if got poisoned', function () {
+        player.extra.push(new Extra('toxin', 2));
         player.doAttack(attacker);
         expect(player.life).toEqual(98);
-    })
+    });
+
+    xit('should be hurt each round if got poisoned', function () {
+        player.extra.push(new Extra('toxin', 2));
+        player.doAttack(attacker);
+        expect(player.life).toEqual(98);
+    });
+
+    xit('should be hurt each round if got poisoned', function () {
+        player.extra.push(new Extra('toxin', 2));
+        player.doAttack(attacker);
+        expect(player.life).toEqual(98);
+    });
 });

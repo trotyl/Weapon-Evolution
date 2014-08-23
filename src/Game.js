@@ -7,19 +7,26 @@ function Game (console, player_1, player_2) {
 }
 
 Game.prototype.play = function() {
-	while(this.status == 'run') {
+	while(this.status == 'run' && this.round < 10) {
 		var attacker = this.players[this.turn? 0: 1];
 		var defender = this.players[!this.turn? 0: 1];
 
-		var over = defender.getHurt(attacker);
+        var beforeResult = attacker.getAttackLog(defender);
+        if(beforeResult) {
+            for(var i in beforeResult) {
+                this.console.log(beforeResult[i]);
+            }
+        }
 
-		this.console.log(Game.getLog(attacker, defender));
+		var afterResult = defender.getHurt(attacker);
+		this.console.log(afterResult);
 
-		if(over) {
+		if(afterResult.substr(afterResult.length - 5) == '被打败了.') {
 			this.status = 'over';
 			this.console.log(defender.name + '被打败了.');
 		}
 		this.turn = !this.turn;
+        this.round++;
 	}
 };
 

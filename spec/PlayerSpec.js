@@ -2,8 +2,8 @@ describe('Player', function () {
 	var player, attacker;
 
 	beforeEach(function () {
-		player = new Player('张三', 100, 10);
-		attacker = new Player('李四', 50, 20);
+		player = new Player('张三', 100, 10, '普通人');
+		attacker = new Player('李四', 50, 20, '普通人');
 	});
 
 	it('should begin with the right attritubes', function () {
@@ -26,5 +26,6 @@ describe('Player', function () {
 		player.getHurt(attacker);
 		player.getHurt(attacker);
 		expect(player.status).toEqual('dead');
-	})
+	});
+
 });

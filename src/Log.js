@@ -14,7 +14,7 @@ Log.getDetails = function (attacker, defender, damage, extra) {
 		extraText = attacker.name + '发动了致命一击' + ', ';
 		before = true;
 	}
-	else if(extra) {
+	else if(extra && extra.type) {
 		extraText = defender.name + extra.describe + '了, '; 
 	}
 	return before? extraText + mainBody: mainBody + extraText;
@@ -32,4 +32,8 @@ Log.getExtra = function (attacker, defender, extra) {
 		faint: attacker.name + '晕倒了, 无法攻击, 眩晕还剩：' + extra.remain-- + '轮'
 	};
 	return map[extra.type];
+};
+
+Log.getDeath = function (player) {
+    return player.name + '被打败了.';
 };

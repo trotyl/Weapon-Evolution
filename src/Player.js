@@ -6,6 +6,7 @@ function Player (name, life, attack, role, weapon, shield) {
 	this.weapon = weapon;
 	this.shield = shield;
 	this.status = "alive";
+    this.extra = [];
 }
 
 Player.prototype.getHurt = function (attacker) {
@@ -18,9 +19,9 @@ Player.prototype.getHurt = function (attacker) {
 	this.life -= damage;
 	if(this.life <= 0) {
 		this.status = 'dead';
+        return Log.getDeath(this);
 	}
-	var log = this.getHurtLog(attacker, damage, extra);
-	return log;
+	return this.getHurtLog(attacker, damage, extra);
 };
 
 Player.prototype.getTotalDamage = function () {
@@ -28,7 +29,7 @@ Player.prototype.getTotalDamage = function () {
 };
 
 Player.prototype.getWeaponExtra = function () {
-	return this.weapon? this.weapon.getExtra(): null;
+	return (this.weapon? this.weapon.getExtra(): {type: null}) || {type: null};
 };
 
 Player.prototype.getTotalDefence = function () {
@@ -36,22 +37,18 @@ Player.prototype.getTotalDefence = function () {
 };
 
 Player.prototype.getHurtLog = function(attacker, damage, extra) {
-	var log = Log.getBeats(attacker, this) +
+	return Log.getBeats(attacker, this) +
 		Log.getDetails(attacker, this, damage, extra) +
-		Log.getRemain();
-	return log;
+		Log.getRemain(this);
 };
 
 Player.prototype.getAttackLog = function(defender) {
-	var result = '';
+	var result = [];
 	for(var i in this.extra) {
 		var extra = this.extra[i];
 		if(extra) {
-            result += Log.getExtra(this, defender, this.extra[i]);
+            result.push(Log.getExtra(this, defender, extra));
         }
-		if(i != this.extra.length - 1) {
-			result += '\n';
-		}
 	}
 	return result;
 };

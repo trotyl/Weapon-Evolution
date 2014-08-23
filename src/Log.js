@@ -29,7 +29,7 @@ Log.getExtra = function (attacker, defender, extra) {
 		toxin: attacker.name + '受到' + extra.damage + '点毒性伤害, ' + attacker.name + '剩余生命：' + attacker.life,
 		flame: attacker.name + '受到' + extra.damage + '点火焰伤害, ' + attacker.name + '剩余生命：' + attacker.life,
 		frozen: attacker.name + '冻得直哆嗦, 没有击中' + defender.name,
-		faint: attacker.name + '晕倒了, 无法攻击, 眩晕还剩：' + extra.remain-- + '轮'
+		faint: attacker.name + '晕倒了, 无法攻击, 眩晕还剩：' + --extra.remain + '轮'
 	};
 	return map[extra.type];
 };

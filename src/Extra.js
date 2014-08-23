@@ -25,7 +25,7 @@ function Extra (type, damage) {
             name: '击晕',
             describe: '晕倒',
             damage: 0,
-            span: 0,
+            span: 'no',
             remain: 2
         },
         strike:{

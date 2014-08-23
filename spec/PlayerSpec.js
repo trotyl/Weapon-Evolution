@@ -51,13 +51,14 @@ describe('Player', function () {
         expect(player.doAttack(attacker, 1)).toEqual([]);
         expect(player.doAttack(attacker, 2)).toEqual([]);
         expect(player.doAttack(attacker, 3)).toEqual(['张三冻得直哆嗦, 没有击中李四']);
-
+        expect(player.doAttack(attacker, 4)).toEqual([]);
     });
 
-    xit('should be hurt each round if got poisoned', function () {
-        player.extra.push(new Extra('toxin', 2));
-        player.doAttack(attacker);
-        expect(player.life).toEqual(98);
+    it('should not attack for 2 round got faint', function () {
+        player.extra.push(new Extra('faint'));
+        expect(player.doAttack(attacker)).toEqual(['张三晕倒了, 无法攻击, 眩晕还剩：1轮']);
+        expect(player.doAttack(attacker)).toEqual(['张三晕倒了, 无法攻击, 眩晕还剩：0轮']);
+        expect(player.doAttack(attacker)).toEqual([]);
     });
 
     xit('should be hurt each round if got poisoned', function () {

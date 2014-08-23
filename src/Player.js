@@ -27,7 +27,6 @@ Player.prototype.doAttack = function (defender, round) {
     var result = [];
     for(var i in this.extra) {
         var extra = this.extra[i];
-        console.log(extra);
         if(typeof(extra.remain) == 'number' && extra.remain <= 0) {
             continue;
         }

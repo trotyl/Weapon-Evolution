@@ -6,7 +6,7 @@ function Player (name, life, attack, role, weapon, shield) {
 	this.weapon = weapon;
 	this.shield = shield;
 	this.status = "alive";
-    this.extra = [];
+    this.extras = [];
 }
 
 Player.prototype.getHurt = function (attacker) {
@@ -14,8 +14,14 @@ Player.prototype.getHurt = function (attacker) {
 	damage = damage < 0? 0: damage;
 	var extra = attacker.getWeaponExtra();
 	if(extra && extra.type != 'strike') {
-		this.extra.push(extra);		
+        if(this.extras[0] && this.extras[0].type != extra.type) {
+            this.extras.clear();
+        }
+		this.extras.push(extra);
 	}
+    else if(extra) {
+        damage *= 3;
+    }
 	this.life -= damage;
 	if(this.life <= 0) {
 		this.status = 'dead';
@@ -25,8 +31,8 @@ Player.prototype.getHurt = function (attacker) {
 
 Player.prototype.doAttack = function (defender, round) {
     var result = [];
-    for(var i in this.extra) {
-        var extra = this.extra[i];
+    for(var i in this.extras) {
+        var extra = this.extras[i];
         if(typeof(extra.remain) == 'number' && extra.remain <= 0) {
             continue;
         }

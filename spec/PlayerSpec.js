@@ -80,5 +80,13 @@ describe('Player', function () {
         spyOn(weapon, 'getExtra').and.returnValue(new Extra('toxin', 2));
         player.getHurt(another);
         expect(player.extras.length).toEqual(2);
+    });
+
+    it('\'s extra damage should not be affect by strike', function () {
+        player.extras.push(new Extra('toxin', 5));
+        spyOn(weapon, 'getExtra').and.returnValue(new Extra('strike'));
+        player.getHurt(another);
+        expect(player.extras.length).toEqual(1);
+        expect(player.extras[0].type).toEqual('toxin');
     })
 });

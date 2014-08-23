@@ -5,7 +5,7 @@ function Player (name, life, attack, role, weapon, shield) {
 	this.role = role;
 	this.weapon = weapon;
 	this.shield = shield;
-	this.status = "alive";
+	this.status = 'alive';
     this.extras = [];
 }
 

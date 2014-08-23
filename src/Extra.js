@@ -31,7 +31,7 @@ function Extra (type, damage) {
         strike:{
             name: '致命一击',
             describe: '中毒',
-            damage: '3x',
+            damage: 0,
             span: 0,
             remain: 0
         }

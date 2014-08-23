@@ -28,4 +28,9 @@ describe('Player', function () {
 		expect(player.status).toEqual('dead');
 	});
 
+    it('should be hurt each round if got poisoned', function () {
+        player.extra.push(new Extra('toxin', 2));
+        player.doAttack(attacker);
+        expect(player.life).toEqual(98);
+    })
 });

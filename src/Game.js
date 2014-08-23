@@ -11,7 +11,7 @@ Game.prototype.play = function() {
 		var attacker = this.players[this.turn? 0: 1];
 		var defender = this.players[!this.turn? 0: 1];
 
-        var beforeResult = attacker.getAttackLog(defender);
+        var beforeResult = attacker.doAttack(defender);
         if(beforeResult) {
             for(var i in beforeResult) {
                 this.console.log(beforeResult[i]);
@@ -21,9 +21,9 @@ Game.prototype.play = function() {
 		var afterResult = defender.getHurt(attacker);
 		this.console.log(afterResult);
 
-		if(afterResult.substr(afterResult.length - 5) == '被打败了.') {
+		if(defender.status != 'alive') {
 			this.status = 'over';
-			this.console.log(defender.name + '被打败了.');
+			this.console.log(Log.getDeath(defender));
 		}
 		this.turn = !this.turn;
         this.round++;

@@ -15,7 +15,7 @@ Player.prototype.getHurt = function (attacker) {
 	var extra = attacker.getWeaponExtra();
 	if(extra && extra.type != 'strike') {
         if(this.extras[0] && this.extras[0].type != extra.type) {
-            this.extras.clear();
+            this.extras = [];
         }
 		this.extras.push(extra);
 	}

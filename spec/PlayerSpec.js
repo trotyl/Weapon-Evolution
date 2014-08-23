@@ -68,11 +68,17 @@ describe('Player', function () {
         expect(player.doAttack(another)).toEqual([]);
     });
 
-    it('should only got 1 type of extra state', function () {
+    it('should only got 1 type of extra damage', function () {
         player.extras.push(new Extra('toxin', 5));
-        spyOn(weapon, 'getExtra').and.returnValue(new Extra('strike'));
+        spyOn(weapon, 'getExtra').and.returnValue(new Extra('flame', 2));
         player.getHurt(another);
         expect(player.extras.length).toEqual(1);
     });
-    
+
+    it('could get more than one same type of extra damage', function () {
+        player.extras.push(new Extra('toxin', 5));
+        spyOn(weapon, 'getExtra').and.returnValue(new Extra('toxin', 2));
+        player.getHurt(another);
+        expect(player.extras.length).toEqual(2);
+    })
 });

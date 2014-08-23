@@ -11,19 +11,26 @@ Game.prototype.play = function() {
 		var attacker = this.players[this.turn? 0: 1];
 		var defender = this.players[!this.turn? 0: 1];
 
-        var beforeResult = attacker.doAttack(defender);
+        var beforeResult = attacker.doAttack(defender, this.round);
         if(beforeResult) {
             for(var i in beforeResult) {
                 this.console.log(beforeResult[i]);
             }
         }
 
+        if(attacker.status != 'alive') {
+            this.status = 'over';
+            this.console.log(Log.getDeath(attacker));
+            return;
+        }
+
 		var afterResult = defender.getHurt(attacker);
 		this.console.log(afterResult);
 
 		if(defender.status != 'alive') {
-			this.status = 'over';
-			this.console.log(Log.getDeath(defender));
+            this.status = 'over';
+            this.console.log(Log.getDeath(defender));
+            return;
 		}
 		this.turn = !this.turn;
         this.round++;

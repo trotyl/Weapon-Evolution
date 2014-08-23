@@ -5,21 +5,21 @@ function Extra (type, damage) {
             describe: '中毒',
             damage: damage,
             span: 0,
-            remain: -1
+            remain: 'forever'
         },
         flame:{
             name: '火焰',
             describe: '着火',
             damage: damage,
             span: 0,
-            remain: -1
+            remain: 'forever'
         },
         frozen:{
             name: '冰冻',
             describe: '冻僵',
             damage: 0,
             span: 2,
-            remain: -1
+            remain: 'forever'
         },
         faint:{
             name: '击晕',

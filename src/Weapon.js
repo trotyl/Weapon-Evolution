@@ -1,6 +1,7 @@
-function Weapon (name, damage, extra) {
+function Weapon (name, damage, type, extra) {
 	this.name = name;
 	this.damage = damage;
+    this.type = type;
 	this.extra = extra || [];
 }
 

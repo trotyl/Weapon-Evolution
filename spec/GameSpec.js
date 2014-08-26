@@ -6,7 +6,7 @@ describe('Game', function () {
 		console = {log: null};
 		spyOn(console, 'log');
 
-		weapon = new Weapon('优质木棒', 10);
+		weapon = new Weapon('优质木棒', 10, 'medium');
 		shield = new Shield(5);
 
 		player_1 = new Player('张三', 10, 8, '战士', weapon, shield);

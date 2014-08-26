@@ -12,16 +12,8 @@ function Player (name, life, attack, role, weapon, shield) {
 Player.prototype.getHurt = function (attacker) {
 	var damage = attacker.getTotalDamage() - this.getTotalDefence();
 	damage = damage < 0? 0: damage;
-	var extra = attacker.getWeaponExtra();
-	if(extra && extra.type != 'strike') {
-        if(this.extras[0] && this.extras[0].type != extra.type) {
-            this.extras = [];
-        }
-		this.extras.push(extra);
-	}
-    else if(extra) {
-        damage *= 3;
-    }
+    var extra = attacker.getWeaponExtra()
+    damage = this.getExtra(extra, damage);
 	this.life -= damage;
 	if(this.life <= 0) {
 		this.status = 'dead';
@@ -42,6 +34,19 @@ Player.prototype.doAttack = function (defender, round) {
         }
     }
     return result;
+};
+
+Player.prototype.getExtra = function (extra, damage) {
+    if(extra && extra.type != 'strike') {
+        if(this.extras[0] && this.extras[0].type != extra.type) {
+            this.extras = [];
+        }
+        this.extras.push(extra);
+    }
+    else if(extra) {
+        damage *= 3;
+    }
+    return damage;
 };
 
 Player.prototype.getTotalDamage = function () {

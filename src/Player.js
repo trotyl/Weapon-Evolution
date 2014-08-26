@@ -80,3 +80,14 @@ Player.prototype.addWeapon = function (weapon) {
 Player.prototype.removeWeapon = function () {
     this.weapon = null;
 };
+
+Player.prototype.addShield = function (shield) {
+    if(this.shield) {
+        this.removeShield();
+    }
+    this.shield = shield;
+};
+
+Player.prototype.removeShield = function () {
+    this.shield = null;
+};

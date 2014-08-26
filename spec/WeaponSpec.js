@@ -3,7 +3,7 @@ describe('Weapon', function () {
 
     beforeEach(function () {
         weapon = new Weapon('方天画戟', 20, 'long');
-        superWeapon = new Weapon('轩辕剑', 50, 'medium', [new Extra('toxin', 5)]);
+        superWeapon = new Weapon('轩辕剑', 50, 'medium', [new ExtraDamage('toxin', 5)]);
     });
 
     it('should begin with the right attritubes', function () {

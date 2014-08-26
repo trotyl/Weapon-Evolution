@@ -68,7 +68,7 @@ Player.prototype.getHurtLog = function(attacker, damage, extra) {
 };
 
 Player.prototype.addWeapon = function (weapon) {
-    if(!Matcher.check(this.role, weapon.type)) {
+    if(!Matcher.checkWeapon(this.role, weapon.type)) {
         return;
     }
     if(this.weapon) {

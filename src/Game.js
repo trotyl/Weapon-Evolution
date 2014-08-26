@@ -20,7 +20,7 @@ Game.prototype.play = function() {
 
         if(attacker.status != 'alive') {
             this.status = 'over';
-            this.console.log(Log.getDeath(attacker));
+            this.console.log(Logger.getDeath(attacker));
             return;
         }
 
@@ -29,7 +29,7 @@ Game.prototype.play = function() {
 
 		if(defender.status != 'alive') {
             this.status = 'over';
-            this.console.log(Log.getDeath(defender));
+            this.console.log(Logger.getDeath(defender));
             return;
 		}
 		this.turn = !this.turn;

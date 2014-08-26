@@ -12,7 +12,7 @@ function Player (name, life, attack, role, weapon, shield) {
 Player.prototype.getHurt = function (attacker) {
 	var damage = attacker.getTotalDamage() - this.getTotalDefence();
 	damage = damage < 0? 0: damage;
-    var extra = attacker.getWeaponExtra()
+    var extra = attacker.getWeaponExtra();
     damage = this.getExtra(extra, damage);
 	this.life -= damage;
 	if(this.life <= 0) {
@@ -30,7 +30,7 @@ Player.prototype.doAttack = function (defender, round) {
         }
         if(typeof(extra.span) != 'number' || round % extra.span == 0) {
             this.life -= extra.damage;
-            result.push(Log.getExtra(this, defender, extra));
+            result.push(Logger.getExtra(this, defender, extra));
         }
     }
     return result;
@@ -62,12 +62,15 @@ Player.prototype.getTotalDefence = function () {
 };
 
 Player.prototype.getHurtLog = function(attacker, damage, extra) {
-	return Log.getBeats(attacker, this) +
-		Log.getDetails(attacker, this, damage, extra) +
-		Log.getRemain(this);
+	return Logger.getBeats(attacker, this) +
+		Logger.getDetails(attacker, this, damage, extra) +
+		Logger.getRemain(this);
 };
 
 Player.prototype.addWeapon = function (weapon) {
+    if(!Matcher.check(this.role, weapon.type)) {
+        return;
+    }
     if(this.weapon) {
         this.removeWeapon();
     }

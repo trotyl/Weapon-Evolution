@@ -2,9 +2,9 @@ function Player (name, life, attack, role, weapon, shield) {
 	this.name = name;
 	this.life = life;
 	this.attack = attack;
-	this.role = role;
-	this.weapon = weapon;
-	this.shield = shield;
+	this.role = role || '普通人';
+	this.weapon = weapon || null;
+	this.shield = shield || null;
 	this.status = 'alive';
     this.extras = [];
 }
@@ -60,4 +60,15 @@ Player.prototype.getHurtLog = function(attacker, damage, extra) {
 	return Log.getBeats(attacker, this) +
 		Log.getDetails(attacker, this, damage, extra) +
 		Log.getRemain(this);
+};
+
+Player.prototype.addWeapon = function (weapon) {
+    if(this.weapon) {
+        this.removeWeapon();
+    }
+    this.weapon = weapon;
+};
+
+Player.prototype.removeWeapon = function () {
+    this.weapon = null;
 };

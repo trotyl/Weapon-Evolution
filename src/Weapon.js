@@ -2,8 +2,9 @@ function Weapon (name, damage, type, extras) {
 	this.name = name;
 	this.damage = damage;
     this.type = type;
-    this.effect = Weapon.getEffect(type);
 	this.extras = extras || [];
+    this.effect = Weapon.getEffect(type);
+    this.range = Weapon.getRange(type);
 }
 
 Weapon.none = function() {
@@ -16,9 +17,20 @@ Weapon.prototype.getExtraDamage = function() {
 
 Weapon.getEffect = function (type) {
     var map = {
-        long: {},
+        long: {
+            repel: true
+        },
         middle: {},
         short: {}
+    };
+    return map[type];
+};
+
+Weapon.getRange = function (type) {
+    var map = {
+        long: 2,
+        middle: 1,
+        short: 1
     };
     return map[type];
 };

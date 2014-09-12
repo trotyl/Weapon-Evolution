@@ -30,14 +30,14 @@ describe('Game', function () {
 	});
 
     it('should have the right extra effects', function () {
-        spyOn(weapon, 'getExtra').and.returnValue(new ExtraDamage('toxin', 5));
+        spyOn(weapon, 'getExtraDamage').and.returnValue(new ExtraDamage('toxin', 5));
         game.play();
         expect(console.log).toHaveBeenCalledWith('战士张三用优质木棒攻击了普通人李四, 李四受到了18点伤害, 李四中毒了, 李四剩余生命：12');
         expect(console.log).toHaveBeenCalledWith('李四受到5点毒性伤害, 李四剩余生命：7');
     });
 
     it('should tell whether there is a strike', function () {
-        spyOn(weapon, 'getExtra').and.returnValue(new ExtraDamage('strike', 5));
+        spyOn(weapon, 'getExtraDamage').and.returnValue(new ExtraDamage('strike', 5));
         game.play();
         expect(console.log).toHaveBeenCalledWith('战士张三用优质木棒攻击了普通人李四, 张三发动了致命一击, 李四受到了54点伤害, 李四剩余生命：-24');
     })

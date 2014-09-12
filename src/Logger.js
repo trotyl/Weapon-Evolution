@@ -24,7 +24,7 @@ Logger.getRemain = function (player) {
 	return player.name + '剩余生命：' + player.life;
 };
 
-Logger.getExtra = function (attacker, defender, extra) {
+Logger.getExtraDamage = function (attacker, defender, extra) {
 	var map = {
 		toxin: attacker.name + '受到' + extra.damage + '点毒性伤害, ' + attacker.name + '剩余生命：' + attacker.life,
 		flame: attacker.name + '受到' + extra.damage + '点火焰伤害, ' + attacker.name + '剩余生命：' + attacker.life,

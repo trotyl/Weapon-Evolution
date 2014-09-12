@@ -25,7 +25,7 @@ Player.prototype.doDefence = function (attacker) {
 	var damage = attacker.getTotalDamage() - this.getTotalDefence();
 	damage = damage < 0? 0: damage;
     var extra = attacker.getWeaponExtra();
-    damage = this.getExtra(extra, damage);
+    damage = this.getExtraDamage(extra, damage);
 	this.life -= damage;
 	if(this.life <= 0) {
 		this.status = 'dead';
@@ -42,13 +42,13 @@ Player.prototype.doAttack = function (defender, round) {
         }
         if(typeof(extra.span) != 'number' || round % extra.span == 0) {
             this.life -= extra.damage;
-            result.push(Logger.getExtra(this, defender, extra));
+            result.push(Logger.getExtraDamage(this, defender, extra));
         }
     }
     return result;
 };
 
-Player.prototype.getExtra = function (extra, damage) {
+Player.prototype.getExtraDamage = function (extra, damage) {
     if(extra && extra.type != 'strike') {
         if(this.extras[0] && this.extras[0].type != extra.type) {
             this.extras = [];
@@ -66,7 +66,7 @@ Player.prototype.getTotalDamage = function () {
 };
 
 Player.prototype.getWeaponExtra = function () {
-	return (this.weapon? this.weapon.getExtra(): null);
+	return (this.weapon? this.weapon.getExtraDamage(): null);
 };
 
 Player.prototype.getTotalDefence = function () {

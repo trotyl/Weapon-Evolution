@@ -9,6 +9,6 @@ Weapon.none = function() {
     return new Weapon('', 0, 'null', []);
 };
 
-Weapon.prototype.getExtra = function() {
+Weapon.prototype.getExtraDamage = function() {
 	return this.extra[Math.floor(Math.random() * 1000) % (this.extra.length * 2)];
 };

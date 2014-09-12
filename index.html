@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>武器进化</title>
+    <link rel="stylesheet" href="lib/bootstrap-3.2.0-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/bootstrap-3.2.0-dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="src/main.css">
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">武器进化</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">双人模式</a></li>
+                    <li><a href="#">重新开始</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+        <div class="jumbotron">
+            <h2>选择人物</h2>
+            <div class="row">
+                <div class="panel panel-default col-md-5">
+                    <h3>玩家一</h3>
+                    <form role="form" class="ad-margin">
+                        <div class="form-group">
+                            <label for="inputName">姓名</label>
+                            <input type="text" class="form-control" id="inputName" placeholder="Enter name">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputLife">生命</label>
+                            <input type="number" class="form-control" id="inputLife" placeholder="Life">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAttack">攻击力</label>
+                            <input type="number" class="form-control" id="inputAttack" placeholder="Attack">
+                        </div>
+                        <div class="form-group">
+                            <label>职业</label><br/>
+                            <label class="radio-inline">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked="true"> 普通人
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 刺客
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 战士
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option3"> 骑士
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputWeaponName">武器</label>
+                            <div class="well">
+                                <div class="form-group">
+                                    <label for="inputWeaponName">名称</label>
+                                    <input type="text" class="form-control" id="inputWeaponName" placeholder="Weapon name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputWeaponDamage">攻击力</label>
+                                    <input type="number" class="form-control" id="inputWeaponDamage" placeholder="Weapon damage">
+                                </div>
+                                <div class="form-group">
+                                    <label>类型</label><br>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="inlineRadioOptions" id="inlineRadioWeapon1" value="option1" checked="true"> 长
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="inlineRadioOptions" id="inlineRadioWeapon2" value="option2"> 中
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="inlineRadioOptions" id="inlineRadioWeapon3" value="option3"> 短
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+                <div class="col-md-2">
+                </div>
+                <div class="panel panel-default col-md-5">
+                    <div class="panel-body">
+                        Basic panel example
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap-3.2.0-dist/js/bootstrap.js"></script>
+</body>
+</html>

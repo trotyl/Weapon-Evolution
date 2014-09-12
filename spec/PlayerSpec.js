@@ -21,7 +21,7 @@ describe('Player', function () {
 	});
 
     it('should get 3x damage if got strike', function () {
-        spyOn(weapon, 'getExtra').and.returnValue(new ExtraDamage('strike'));
+        spyOn(weapon, 'getExtraDamage').and.returnValue(new ExtraDamage('strike'));
         player.doDefence(another);
         expect(player.life).toEqual(40);
     });
@@ -70,21 +70,21 @@ describe('Player', function () {
 
     it('should only got 1 type of extra damage', function () {
         player.extras.push(new ExtraDamage('toxin', 5));
-        spyOn(weapon, 'getExtra').and.returnValue(new ExtraDamage('flame', 2));
+        spyOn(weapon, 'getExtraDamage').and.returnValue(new ExtraDamage('flame', 2));
         player.doDefence(another);
         expect(player.extras.length).toEqual(1);
     });
 
     it('could get more than one same type of extra damage', function () {
         player.extras.push(new ExtraDamage('toxin', 5));
-        spyOn(weapon, 'getExtra').and.returnValue(new ExtraDamage('toxin', 2));
+        spyOn(weapon, 'getExtraDamage').and.returnValue(new ExtraDamage('toxin', 2));
         player.doDefence(another);
         expect(player.extras.length).toEqual(2);
     });
 
     it('\'s extra damage should not be affect by strike', function () {
         player.extras.push(new ExtraDamage('toxin', 5));
-        spyOn(weapon, 'getExtra').and.returnValue(new ExtraDamage('strike'));
+        spyOn(weapon, 'getExtraDamage').and.returnValue(new ExtraDamage('strike'));
         player.doDefence(another);
         expect(player.extras.length).toEqual(1);
         expect(player.extras[0].type).toEqual('toxin');

@@ -6,9 +6,9 @@ function Weapon (name, damage, type, extras) {
 }
 
 Weapon.none = function() {
-    return new Weapon('', 0, 'null', []);
+    return new Weapon(null, 0, 'null', []);
 };
 
 Weapon.prototype.getExtraDamage = function() {
-	return this.extra[Math.floor(Math.random() * 1000) % (this.extra.length * 2)];
+	return this.extras[Math.floor(Math.random() * 1000) % (this.extras.length * 2)];
 };

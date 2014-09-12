@@ -2,7 +2,7 @@ function Logger () {
 }
 
 Logger.getBeats = function (attacker, defender) {
-	return attacker.role + attacker.name + (attacker.weapon? '用' + attacker.weapon.name: '') +
+	return attacker.role + attacker.name + (attacker.weapon.name? '用' + attacker.weapon.name: '') +
 		'攻击了' + defender.role + defender.name + ', ';
 };
 

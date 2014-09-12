@@ -3,23 +3,11 @@ function Player (name, life, attack, role, weapon, shield) {
 	this.life = life;
 	this.attack = attack;
 	this.role = role || '普通人';
-	this.weapon = weapon || null;
-	this.shield = shield || null;
+	this.weapon = weapon || Weapon.none();
+	this.shield = shield || Shield.none();
 	this.status = 'alive';
     this.extras = [];
 }
-
-Player.prototype.setRole = function(role) {
-    this.role = role;
-};
-
-Player.prototype.setWeapon = function(weapon) {
-    this.weapon = _.cloneDeep(weapon);
-};
-
-Player.prototype.setShield = function(shield) {
-    this.weapon = _.cloneDeep(shield);
-};
 
 Player.prototype.doDefence = function (attacker) {
 	var damage = attacker.getTotalDamage() - this.getTotalDefence();
@@ -77,6 +65,20 @@ Player.prototype.getDefenceLog = function(attacker, damage, extra) {
 	return Logger.getBeats(attacker, this) +
 		Logger.getDetails(attacker, this, damage, extra) +
 		Logger.getRemain(this);
+};
+
+//保留功能
+
+Player.prototype.setRole = function(role) {
+    this.role = role;
+};
+
+Player.prototype.setWeapon = function(weapon) {
+    this.weapon = _.cloneDeep(weapon);
+};
+
+Player.prototype.setShield = function(shield) {
+    this.weapon = _.cloneDeep(shield);
 };
 
 Player.prototype.removeWeapon = function () {

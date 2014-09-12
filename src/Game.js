@@ -44,19 +44,3 @@ Game.prototype.play = function() {
         this.round++;
 	}
 };
-
-Game.getLog = function(attacker, defender) {
-	var result = attacker.role + attacker.name;
-	if(attacker.weapon) {
-		result += '用' + attacker.weapon.name;
-	}
-	result += '攻击了' + defender.role + defender.name + ',' + defender.name + '受到了' 
-		+ Game.getDamage(attacker,defender) + '点伤害,' + defender.name + '剩余生命：' + defender.life;
-	return result;
-};
-
-Game.getDamage = function (attacker, defender) {
-	return attacker.attack 
-		+ (attacker.weapon? attacker.weapon.damage: 0) 
-		- (defender.shield? defender.shield.defence: 0);
-};

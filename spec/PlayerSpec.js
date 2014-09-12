@@ -14,24 +14,24 @@ describe('Player', function () {
 	});
 
 	it('should get hurt when be attacked', function () {
-		player.getHurt(another);
+		player.doDefence(another);
 		expect(player.life).toEqual(80);
-		player.getHurt(another);
+		player.doDefence(another);
 		expect(player.life).toEqual(60);
 	});
 
     it('should get 3x damage if got strike', function () {
         spyOn(weapon, 'getExtra').and.returnValue(new ExtraDamage('strike'));
-        player.getHurt(another);
+        player.doDefence(another);
         expect(player.life).toEqual(40);
     });
 
 	it('should be dead when have no life left', function () {
-		player.getHurt(another);
-		player.getHurt(another);
-		player.getHurt(another);
-		player.getHurt(another);
-		player.getHurt(another);
+		player.doDefence(another);
+		player.doDefence(another);
+		player.doDefence(another);
+		player.doDefence(another);
+		player.doDefence(another);
 		expect(player.status).toEqual('dead');
 	});
 
@@ -71,21 +71,21 @@ describe('Player', function () {
     it('should only got 1 type of extra damage', function () {
         player.extras.push(new ExtraDamage('toxin', 5));
         spyOn(weapon, 'getExtra').and.returnValue(new ExtraDamage('flame', 2));
-        player.getHurt(another);
+        player.doDefence(another);
         expect(player.extras.length).toEqual(1);
     });
 
     it('could get more than one same type of extra damage', function () {
         player.extras.push(new ExtraDamage('toxin', 5));
         spyOn(weapon, 'getExtra').and.returnValue(new ExtraDamage('toxin', 2));
-        player.getHurt(another);
+        player.doDefence(another);
         expect(player.extras.length).toEqual(2);
     });
 
     it('\'s extra damage should not be affect by strike', function () {
         player.extras.push(new ExtraDamage('toxin', 5));
         spyOn(weapon, 'getExtra').and.returnValue(new ExtraDamage('strike'));
-        player.getHurt(another);
+        player.doDefence(another);
         expect(player.extras.length).toEqual(1);
         expect(player.extras[0].type).toEqual('toxin');
     })

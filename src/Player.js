@@ -9,7 +9,19 @@ function Player (name, life, attack, role, weapon, shield) {
     this.extras = [];
 }
 
-Player.prototype.getHurt = function (attacker) {
+Player.prototype.setRole = function(role) {
+    this.role = role;
+};
+
+Player.prototype.setWeapon = function(weapon) {
+    this.weapon = _.cloneDeep(weapon);
+};
+
+Player.prototype.setShield = function(shield) {
+    this.weapon = _.cloneDeep(shield);
+};
+
+Player.prototype.doDefence = function (attacker) {
 	var damage = attacker.getTotalDamage() - this.getTotalDefence();
 	damage = damage < 0? 0: damage;
     var extra = attacker.getWeaponExtra();
@@ -18,7 +30,7 @@ Player.prototype.getHurt = function (attacker) {
 	if(this.life <= 0) {
 		this.status = 'dead';
 	}
-	return this.getHurtLog(attacker, damage, extra);
+	return this.getDefenceLog(attacker, damage, extra);
 };
 
 Player.prototype.doAttack = function (defender, round) {
@@ -41,7 +53,7 @@ Player.prototype.getExtra = function (extra, damage) {
         if(this.extras[0] && this.extras[0].type != extra.type) {
             this.extras = [];
         }
-        this.extras.push(extra);
+        this.extras.push(_.cloneDeep(extra));
     }
     else if(extra) {
         damage *= 3;
@@ -61,33 +73,16 @@ Player.prototype.getTotalDefence = function () {
 	return this.shield? this.shield.defence: 0;
 };
 
-Player.prototype.getHurtLog = function(attacker, damage, extra) {
+Player.prototype.getDefenceLog = function(attacker, damage, extra) {
 	return Logger.getBeats(attacker, this) +
 		Logger.getDetails(attacker, this, damage, extra) +
 		Logger.getRemain(this);
 };
 
-Player.prototype.addWeapon = function (weapon) {
-    if(!Matcher.checkWeapon(this.role, weapon.type)) {
-        return;
-    }
-    if(this.weapon) {
-        this.removeWeapon();
-    }
-    this.weapon = weapon;
-};
-
 Player.prototype.removeWeapon = function () {
-    this.weapon = null;
-};
-
-Player.prototype.addShield = function (shield) {
-    if(this.shield) {
-        this.removeShield();
-    }
-    this.shield = shield;
+    this.weapon = Weapon.none();
 };
 
 Player.prototype.removeShield = function () {
-    this.shield = null;
+    this.shield = Shield.none();
 };

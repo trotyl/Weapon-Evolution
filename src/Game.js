@@ -6,6 +6,14 @@ function Game (console, player_1, player_2) {
 	this.round = 1;
 }
 
+Game.prototype.setPlayerA = function(player) {
+    this.players[0] = player;
+};
+
+Game.prototype.setPlayerB = function(player) {
+    this.players[1] = player;
+};
+
 Game.prototype.play = function() {
 	while(this.status == 'run' && this.round < 10) {
 		var attacker = this.players[this.turn? 0: 1];
@@ -24,7 +32,7 @@ Game.prototype.play = function() {
             return;
         }
 
-		var afterResult = defender.getHurt(attacker);
+		var afterResult = defender.doDefence(attacker);
 		this.console.log(afterResult);
 
 		if(defender.status != 'alive') {

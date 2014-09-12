@@ -3,8 +3,8 @@ function Weapon (name, damage, type, extras) {
 	this.damage = damage;
     this.type = type;
 	this.extras = extras || [];
-    this.effect = Weapon.getEffect(type);
-    this.range = Weapon.getRange(type);
+    this.effect = Weapon.initEffect(type);
+    this.range = Weapon.initRange(type);
 }
 
 Weapon.none = function() {
@@ -15,12 +15,16 @@ Weapon.prototype.getExtraDamage = function() {
 	return this.extras[Math.floor(Math.random() * 1000) % (this.extras.length * 2)];
 };
 
-Weapon.getEffect = function (type) {
+Weapon.prototype.getEffect = function(rand) {
+    return (rand || (Math.random() * 4)) <= 1? this.effect: null;
+};
+
+Weapon.initEffect = function (type) {
     var map = {
         long: {
             repel: true
         },
-        middle: {},
+        medium: {},
         short: {
             double: true
         }
@@ -28,10 +32,10 @@ Weapon.getEffect = function (type) {
     return map[type];
 };
 
-Weapon.getRange = function (type) {
+Weapon.initRange = function (type) {
     var map = {
         long: 2,
-        middle: 1,
+        medium: 1,
         short: 1,
         null: 1
     };

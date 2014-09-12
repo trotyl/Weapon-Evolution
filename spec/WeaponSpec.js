@@ -18,4 +18,14 @@ describe('Weapon', function () {
         expect(superWeapon.extras[0].damage).toEqual(5);
     });
 
+    it('should generate the right none state', function() {
+        expect(Weapon.none().name).toEqual(null);
+        expect(Weapon.none().damage).toEqual(0);
+        expect(Weapon.none().type).toEqual('null');
+        expect(Weapon.none().extras.length).toBe(0);
+    });
+
+    it('should be able to initiate properly', function() {
+        expect(weapon.getEffect(1).repel).toBe(true);
+    });
 });

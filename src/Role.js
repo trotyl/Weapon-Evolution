@@ -7,15 +7,15 @@ Role.getAllowedWeapon = function(name) {
     var map = {
         normal: {},
         assassin: {
-            middle: true,
+            medium: true,
             short: true
         },
         soldier: {
-            middle: true
+            medium: true
         },
         knight: {
             long: true,
-            middle: true
+            medium: true
         }
     };
     return map[name];

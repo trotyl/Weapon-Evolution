@@ -4,7 +4,53 @@ function Game (console, player_1, player_2) {
 	this.turn = true;
 	this.status = 'run';
 	this.round = 1;
+    this.distance = 1;
 }
+
+Game.prototype.play = function() {
+	while(this.status == 'run') {
+		var attacker = this.players[this.turn? 0: 1];
+		var defender = this.players[!this.turn? 0: 1];
+
+        if(!Matcher.checkDistance(this.distance, attacker.weapon.range)) {
+            this.distance--;
+            continue;
+        }
+
+        var beforeResult = attacker.doAttack(defender, this.round);
+        _(beforeResult).each(function(result) {
+            this.console.log(result);
+        }, this);
+
+        if(this.checkPlayer(attacker)) {
+            return;
+        }
+
+		var afterResult = defender.doDefence(attacker);
+		this.console.log(afterResult);
+
+        if(this.checkPlayer(defender)) {
+            return;
+        }
+
+        this.goOn();
+	}
+};
+
+Game.prototype.checkPlayer = function (player) {
+    if(player.status != 'alive') {
+        this.status = 'over';
+        this.console.log(Logger.getDeath(player));
+        return true;
+    }
+};
+
+Game.prototype.goOn = function () {
+    this.turn = !this.turn;
+    this.round++;
+};
+
+//保留功能
 
 Game.prototype.setPlayerA = function(player) {
     this.players[0] = player;
@@ -12,35 +58,4 @@ Game.prototype.setPlayerA = function(player) {
 
 Game.prototype.setPlayerB = function(player) {
     this.players[1] = player;
-};
-
-Game.prototype.play = function() {
-	while(this.status == 'run' && this.round < 10) {
-		var attacker = this.players[this.turn? 0: 1];
-		var defender = this.players[!this.turn? 0: 1];
-
-        var beforeResult = attacker.doAttack(defender, this.round);
-        if(beforeResult) {
-            for(var i in beforeResult) {
-                this.console.log(beforeResult[i]);
-            }
-        }
-
-        if(attacker.status != 'alive') {
-            this.status = 'over';
-            this.console.log(Logger.getDeath(attacker));
-            return;
-        }
-
-		var afterResult = defender.doDefence(attacker);
-		this.console.log(afterResult);
-
-		if(defender.status != 'alive') {
-            this.status = 'over';
-            this.console.log(Logger.getDeath(defender));
-            return;
-		}
-		this.turn = !this.turn;
-        this.round++;
-	}
 };

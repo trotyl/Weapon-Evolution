@@ -2,13 +2,11 @@ function Matcher () {
 
 }
 
-Matcher.checkWeapon = function (role, type) {
-    var checkList = {
-        刺客_medium: true,
-        刺客_short: true,
-        战士_medium: true,
-        骑士_long: true,
-        骑士_medium: true
-    };
-    return !!checkList[role + '_' + type];
+Matcher.checkWeapon = function(role, type) {
+
+};
+
+Matcher.checkDistance = function(distance, range) {
+    range = range || 1;
+    return distance <= range;
 };

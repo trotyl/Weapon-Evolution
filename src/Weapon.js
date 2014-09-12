@@ -21,7 +21,9 @@ Weapon.getEffect = function (type) {
             repel: true
         },
         middle: {},
-        short: {}
+        short: {
+            double: true
+        }
     };
     return map[type];
 };
@@ -30,7 +32,8 @@ Weapon.getRange = function (type) {
     var map = {
         long: 2,
         middle: 1,
-        short: 1
+        short: 1,
+        null: 1
     };
     return map[type];
 };

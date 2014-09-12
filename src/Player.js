@@ -9,16 +9,27 @@ function Player (name, life, attack, role, weapon, shield) {
     this.extras = [];
 }
 
-Player.prototype.doDefence = function (attacker) {
-	var damage = attacker.getTotalDamage() - this.getTotalDefence();
-	damage = damage < 0? 0: damage;
+Player.prototype.doDefence = function (attacker, distance) {
+	var raw = attacker.getTotalDamage() - this.getTotalDefence();
+	raw = raw < 0? 0: raw;
     var extra = attacker.getWeaponExtra();
-    damage = this.getExtraDamage(extra, damage);
-	this.life -= damage;
-	if(this.life <= 0) {
-		this.status = 'dead';
-	}
-	return this.getDefenceLog(attacker, damage, extra);
+    var damage = this.getExtraDamage(extra, raw);
+
+    var effect = attacker.weapon.getEffect();
+    if(effect && effect.repel) {
+        distance++;
+        this.life -= damage;
+    }
+    else if(effect && effect.double) {
+        this.life -= damage * 2;
+    }
+    else {
+        this.life -= damage;
+    }
+    if(this.life <= 0) {
+        this.status = 'dead';
+    }
+	return this.getDefenceLog(attacker, damage, extra, effect);
 };
 
 Player.prototype.doAttack = function (defender, round) {
@@ -58,9 +69,10 @@ Player.prototype.getTotalDefence = function () {
 	return this.shield? this.shield.defence: 0;
 };
 
-Player.prototype.getDefenceLog = function(attacker, damage, extra) {
+Player.prototype.getDefenceLog = function(attacker, damage, extra, effect) {
 	return Logger.getBeats(attacker, this) +
 		Logger.getDetails(attacker, this, damage, extra) +
+        Logger.getEffect(attacker, this, effect, damage) +
 		Logger.getRemain(this);
 };
 

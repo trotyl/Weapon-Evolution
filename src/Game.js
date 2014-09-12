@@ -25,15 +25,15 @@ Game.prototype.play = function() {
         if(this.checkPlayer(attacker)) {
             return;
         }
-
-		var afterResult = defender.doDefence(attacker);
+ 
+		var afterResult = defender.doDefence(attacker, this.distance);
 		this.console.log(afterResult);
 
         if(this.checkPlayer(defender)) {
             return;
         }
 
-        this.goOn();
+        this.goingOn();
 	}
 };
 
@@ -45,7 +45,7 @@ Game.prototype.checkPlayer = function (player) {
     }
 };
 
-Game.prototype.goOn = function () {
+Game.prototype.goingOn = function () {
     this.turn = !this.turn;
     this.round++;
 };

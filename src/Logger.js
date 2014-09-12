@@ -34,6 +34,18 @@ Logger.getExtraDamage = function (attacker, defender, extra) {
 	return map[extra.type];
 };
 
+Logger.getEffect = function (attacker, defender, effect, damage) {
+    if(!effect) {
+        return '';
+    }
+    if(effect.repel) {
+        return defender.name + '被击退了, ';
+    }
+    if(effect.double) {
+        return attacker.name + '发动了连击, ' + defender.name + '受到了' + damage + '点伤害, ';
+    }
+};
+
 Logger.getDeath = function (player) {
     return player.name + '被打败了.';
 };

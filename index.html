@@ -38,69 +38,142 @@
                     <h3>玩家一</h3>
                     <form role="form" class="ad-margin">
                         <div class="form-group">
-                            <label for="inputName">姓名</label>
-                            <input type="text" class="form-control" id="inputName" placeholder="Enter name">
+                            <label>姓名</label>
+                            <input type="text" class="form-control" id="playerAName" placeholder="Enter name">
                         </div>
                         <div class="form-group">
-                            <label for="inputLife">生命</label>
-                            <input type="number" class="form-control" id="inputLife" placeholder="Life">
+                            <label>生命</label>
+                            <input type="number" class="form-control" id="playerALife" placeholder="Life">
                         </div>
                         <div class="form-group">
-                            <label for="inputAttack">攻击力</label>
-                            <input type="number" class="form-control" id="inputAttack" placeholder="Attack">
+                            <label>攻击力</label>
+                            <input type="number" class="form-control" id="playerAAttack" placeholder="Attack">
                         </div>
                         <div class="form-group">
                             <label>职业</label><br/>
                             <label class="radio-inline">
-                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked="true"> 普通人
+                                <input type="radio" name="playerARole" value="normal" checked="true"> 普通人
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 刺客
+                                <input type="radio" name="playerARole" value="assassin"> 刺客
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 战士
+                                <input type="radio" name="playerARole" value="soldier"> 战士
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option3"> 骑士
+                                <input type="radio" name="playerARole" value="knight"> 骑士
                             </label>
                         </div>
                         <div class="form-group">
-                            <label for="inputWeaponName">武器</label>
+                            <label>武器</label>
                             <div class="well">
                                 <div class="form-group">
-                                    <label for="inputWeaponName">名称</label>
-                                    <input type="text" class="form-control" id="inputWeaponName" placeholder="Weapon name">
+                                    <label>名称</label>
+                                    <input type="text" class="form-control" id="playerAWeaponName" placeholder="Weapon name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputWeaponDamage">攻击力</label>
-                                    <input type="number" class="form-control" id="inputWeaponDamage" placeholder="Weapon damage">
+                                    <label>攻击力</label>
+                                    <input type="number" class="form-control" id="playerAWeaponDamage" placeholder="Weapon damage">
                                 </div>
                                 <div class="form-group">
                                     <label>类型</label><br>
                                     <label class="radio-inline">
-                                        <input type="radio" name="inlineRadioOptions" id="inlineRadioWeapon1" value="option1" checked="true"> 长
+                                        <input type="radio" name="playerAWeaponType" value="option1"> 长
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="inlineRadioOptions" id="inlineRadioWeapon2" value="option2"> 中
+                                        <input type="radio" name="playerAWeaponType" value="option2"> 中
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="inlineRadioOptions" id="inlineRadioWeapon3" value="option3"> 短
+                                        <input type="radio" name="playerAWeaponType" value="option3"> 短
                                     </label>
                                 </div>
                             </div>
 
                         </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <div class="form-group">
+                            <label for="playerAWeaponName">防具</label>
+                            <div class="well">
+                                <div class="form-group">
+                                    <label>防御力</label>
+                                    <input type="number" class="form-control" id="playerAShieldDefence" placeholder="Shield defence">
+                                </div>
+                            </div>
+
+                        </div>
                     </form>
                 </div>
                 <div class="col-md-2">
                 </div>
                 <div class="panel panel-default col-md-5">
-                    <div class="panel-body">
-                        Basic panel example
-                    </div>
+                    <h3>玩家二</h3>
+                    <form role="form" class="ad-margin">
+                        <div class="form-group">
+                            <label>姓名</label>
+                            <input type="text" class="form-control" id="playerBName" placeholder="Enter name">
+                        </div>
+                        <div class="form-group">
+                            <label>生命</label>
+                            <input type="number" class="form-control" id="playerBLife" placeholder="Life">
+                        </div>
+                        <div class="form-group">
+                            <label>攻击力</label>
+                            <input type="number" class="form-control" id="playerBAttack" placeholder="Attack">
+                        </div>
+                        <div class="form-group">
+                            <label>职业</label><br/>
+                            <label class="radio-inline">
+                                <input type="radio" name="playerBRole" value="normal" checked="true"> 普通人
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="playerBRole" value="assassin"> 刺客
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="playerBRole" value="soldier"> 战士
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="playerBRole" value="knight"> 骑士
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>武器</label>
+                            <div class="well">
+                                <div class="form-group">
+                                    <label>名称</label>
+                                    <input type="text" class="form-control" id="playerBWeaponName" placeholder="Weapon name">
+                                </div>
+                                <div class="form-group">
+                                    <label>攻击力</label>
+                                    <input type="number" class="form-control" id="playerBWeaponDamage" placeholder="Weapon damage">
+                                </div>
+                                <div class="form-group">
+                                    <label>类型</label><br>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="playerBWeaponType" value="option1"> 长
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="playerBWeaponType" value="option2"> 中
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="playerBWeaponType" value="option3"> 短
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="playerBWeaponName">防具</label>
+                            <div class="well">
+                                <div class="form-group">
+                                    <label>防御力</label>
+                                    <input type="number" class="form-control" id="playerBShieldDefence" placeholder="Shield defence">
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
             </div>
+            <button class="btn btn-lg btn-primary">开始游戏</button>
         </div>
     </div>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>

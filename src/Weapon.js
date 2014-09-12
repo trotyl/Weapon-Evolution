@@ -2,6 +2,7 @@ function Weapon (name, damage, type, extras) {
 	this.name = name;
 	this.damage = damage;
     this.type = type;
+    this.effect = Weapon.getEffect(type);
 	this.extras = extras || [];
 }
 
@@ -11,4 +12,13 @@ Weapon.none = function() {
 
 Weapon.prototype.getExtraDamage = function() {
 	return this.extras[Math.floor(Math.random() * 1000) % (this.extras.length * 2)];
+};
+
+Weapon.getEffect = function (type) {
+    var map = {
+        long: {},
+        middle: {},
+        short: {}
+    };
+    return map[type];
 };

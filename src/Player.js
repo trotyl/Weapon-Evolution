@@ -23,16 +23,13 @@ Player.prototype.doDefence = function (attacker) {
 
 Player.prototype.doAttack = function (defender, round) {
     var result = [];
-    for(var i in this.extras) {
-        var extra = this.extras[i];
-        if(typeof(extra.remain) == 'number' && extra.remain <= 0) {
-            continue;
-        }
-        if(typeof(extra.span) != 'number' || round % extra.span == 0) {
+    _(this.extras).each(function(extra) {
+        if(typeof(extra.remain) == 'number' && extra.remain <= 0) {}
+        else if(typeof(extra.span) != 'number' || round % extra.span == 0) {
             this.life -= extra.damage;
             result.push(Logger.getExtraDamage(this, defender, extra));
         }
-    }
+    }, this);
     return result;
 };
 

@@ -2,7 +2,7 @@ function Player (name, life, attack, role, weapon, shield) {
 	this.name = name;
 	this.life = life;
 	this.attack = attack;
-	this.role = role || '';
+	this.role = new Role(role);
 	this.weapon = weapon || Weapon.none();
 	this.shield = shield || Shield.none();
 	this.status = 'alive';
@@ -83,6 +83,7 @@ Player.prototype.setRole = function(role) {
 };
 
 Player.prototype.setWeapon = function(weapon) {
+
     this.weapon = _.cloneDeep(weapon);
 };
 

@@ -6,8 +6,8 @@ describe('In level 4 ', function () {
         spyOn(console, 'log');
 
         weapon = new Weapon('优质毒剑', 2, 'medium');
-        player_1 = new Player('张三', 10, 8, '战士', weapon);
-        player_2 = new Player('李四', 20, 9, '普通人');
+        player_1 = new Player('张三', 10, 8, 'soldier', weapon);
+        player_2 = new Player('李四', 20, 9, 'normal');
         game = new Game(console, player_1, player_2);
     });
 

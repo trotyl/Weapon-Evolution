@@ -9,8 +9,8 @@ describe('Game', function () {
 		weapon = new Weapon('优质木棒', 10, 'medium');
 		shield = new Shield(5);
 
-		player_1 = new Player('张三', 10, 8, '战士', weapon, shield);
-		player_2 = new Player('李四', 30, 9, '普通人');
+		player_1 = new Player('张三', 10, 8, 'soldier', weapon, shield);
+		player_2 = new Player('李四', 30, 9, 'normal');
 
 		game = new Game(console, player_1, player_2);
 	});

@@ -2,8 +2,8 @@ function Logger () {
 }
 
 Logger.getBeats = function (attacker, defender) {
-	return attacker.role + attacker.name + (attacker.weapon.name? '用' + attacker.weapon.name: '') +
-		'攻击了' + defender.role + defender.name + ', ';
+	return attacker.role.title + attacker.name + (attacker.weapon.name? '用' + attacker.weapon.name: '') +
+		'攻击了' + defender.role.title + defender.name + ', ';
 };
 
 Logger.getDetails = function (attacker, defender, damage, extra) {

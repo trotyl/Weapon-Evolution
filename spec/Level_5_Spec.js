@@ -6,8 +6,8 @@ describe('In level 4 ', function () {
         spyOn(console, 'log');
 
         weapon = new Weapon('优质毒剑', 2, 'medium');
-        player_1 = new Player('张三', 10, 8, '战士');
-        player_2 = new Player('李四', 20, 9, '普通人');
+        player_1 = new Player('张三', 10, 8, 'soldier');
+        player_2 = new Player('李四', 20, 9, 'normal');
         game = new Game(console, player_1, player_2);
     });
 
@@ -23,7 +23,7 @@ describe('In level 4 ', function () {
     });
 
     it('assassin can wear short and medium weapon', function () {
-        var player = new Player('', 0, 0, '刺客');
+        var player = new Player('', 0, 0, 'assassin');
         var short_weapon = new Weapon('short_weapon', 0, 'short');
         var medium_weapon = new Weapon('medium_weapon', 0, 'medium');
         var long_weapon = new Weapon('long_weapon', 0, 'long');

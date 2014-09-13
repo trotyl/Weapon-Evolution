@@ -8,7 +8,7 @@ function Game (console, player_1, player_2) {
 }
 
 Game.prototype.play = function() {
-	while(this.status == 'run') {
+	while(this.status == 'run' && this.round < 100) {
 		var attacker = this.players[this.turn? 0: 1];
 		var defender = this.players[!this.turn? 0: 1];
 

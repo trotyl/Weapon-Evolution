@@ -25,7 +25,7 @@ Game.prototype.play = function() {
         if(this.checkPlayer(attacker)) {
             return;
         }
- 
+
 		var afterResult = defender.doDefence(attacker, this.distance);
 		this.console.log(afterResult);
 

@@ -44,6 +44,7 @@ Logger.getEffect = function (attacker, defender, effect, damage) {
     if(effect.double) {
         return attacker.name + '发动了连击, ' + defender.name + '受到了' + damage + '点伤害, ';
     }
+    return '';
 };
 
 Logger.getDeath = function (player) {

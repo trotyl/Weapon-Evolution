@@ -1,13 +1,10 @@
 describe('Player', function () {
-	var player, another, weapon, superWeapon;
+	var player, another, weapon;
 
 	beforeEach(function () {
         weapon = new Weapon('倚天剑', 0, 'medium');
 		player = new Player('张三', 100, 10, '普通人');
 		another = new Player('李四', 50, 20, '战士', weapon);
-
-        superWeapon = new Weapon('轩辕剑', 100, 'long');
-
 	});
 
 	it('should begin with the right attritubes', function () {

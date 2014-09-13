@@ -19,6 +19,14 @@ Weapon.prototype.getEffect = function(rand) {
     return (rand || (Math.random() * 4)) <= 1? this.effect: null;
 };
 
+Weapon.prototype.addExtra = function (extra) {
+    this.extras.push(extra);
+};
+
+Weapon.prototype.clearExtra = function () {
+    this.extras = [];
+};
+
 Weapon.initEffect = function (type) {
     var map = {
         long: {

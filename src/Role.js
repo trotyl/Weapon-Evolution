@@ -1,5 +1,4 @@
 function Role(name) {
-    console.log(name);
     this.name = name;
     this.title = Role.getTitle(name);
     this.weaponType = Role.getAllowedWeapon(name);

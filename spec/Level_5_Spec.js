@@ -19,7 +19,7 @@ describe('In level 4 ', function () {
         player_1.setWeapon(weapon);
         expect(player_1.weapon.name).toEqual(weapon.name);
         player_2.setWeapon(weapon);
-        expect(player_2.weapon).toBeFalsy();
+        expect(player_2.weapon.type).toEqual('null');
     });
 
     it('assassin can wear short and medium weapon', function () {
@@ -34,7 +34,7 @@ describe('In level 4 ', function () {
         expect(player.weapon.name).toEqual('medium_weapon');
         player.removeWeapon();
         player.setWeapon(long_weapon);
-        expect(player.weapon).toBeFalsy();
+        expect(player.weapon.type).toEqual('null');
     });
 
     it('', function () {

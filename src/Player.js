@@ -2,7 +2,7 @@ function Player (name, life, attack, role, weapon, shield) {
 	this.name = name;
 	this.life = life;
 	this.attack = attack;
-	this.role = role || '普通人';
+	this.role = role || '';
 	this.weapon = weapon || Weapon.none();
 	this.shield = shield || Shield.none();
 	this.status = 'alive';

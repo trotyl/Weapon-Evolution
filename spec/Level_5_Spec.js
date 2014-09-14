@@ -53,7 +53,7 @@ describe('In level 5 ', function () {
     });
 
     it('knight can wear medium and long weapon', function () {
-        var player = new Player('', 0, 0, 'soldier');
+        var player = new Player('', 0, 0, 'knight');
         var short_weapon = new Weapon('short_weapon', 0, 'short');
         var medium_weapon = new Weapon('medium_weapon', 0, 'medium');
         var long_weapon = new Weapon('long_weapon', 0, 'long');
@@ -69,11 +69,24 @@ describe('In level 5 ', function () {
 
     it('normal one can not wear weapon', function () {
         var player = new Player('', 0, 0, 'normal');
-        
+        var short_weapon = new Weapon('short_weapon', 0, 'short');
+        var medium_weapon = new Weapon('medium_weapon', 0, 'medium');
+        var long_weapon = new Weapon('long_weapon', 0, 'long');
+        player.setWeapon(short_weapon);
+        expect(player.weapon.type).toEqual('null');
+        player.removeWeapon();
+        player.setWeapon(medium_weapon);
+        expect(player.weapon.type).toEqual('null');
+        player.removeWeapon();
+        player.setWeapon(long_weapon);
+        expect(player.weapon.type).toEqual('null');
     });
 
-    it('', function () {
-
+    it('long weapon have repel property and can attack with distance 2', function () {
+        spyOn(weapon, 'getEffect').and.returnValue({ repel: true });
+        game.distance = 1;
+        player_2.doDefence(player_1, game.distance);
+        expect(game.distance).toBe(2);
     });
 
     it('', function () {

@@ -144,4 +144,17 @@ describe('In level 5 ', function () {
         game.play();
         expect(console.log).toHaveBeenCalledWith('刺客张三用峨眉刺攻击了骑士李四, 李四受到了10点伤害, 张三发动了连击, 李四受到了10点伤害, 李四剩余生命：0');
     });
+
+    it('game should output right when in double effect with extra damage', function () {
+        weapon = new Weapon('冰雪峨眉刺', 0, 0, 'short');
+        player_1 = new Player('张三', 10, 8, 'assassin', weapon);
+        player_2 = new Player('李四', 20, 9, 'knight');
+        game.setPlayerA(player_1);
+        game.setPlayerB(player_2);
+        spyOn(player_1.weapon, 'getExtraDamage').and.returnValue(new ExtraDamage('frozen'));
+        spyOn(player_1.weapon, 'getEffect').and.returnValue({ double: true });
+        game.play();
+        expect(console.log).toHaveBeenCalledWith('刺客张三用冰雪峨眉刺攻击了骑士李四, 李四受到了8点伤害, 李四冻僵了, 张三发动了连击, 李四受到了8点伤害, 李四剩余生命：4');
+    });
+
 });

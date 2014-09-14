@@ -18,33 +18,41 @@ describe('In level 4 ', function () {
 
     it('player should be hurt each round if got poisoned', function () {
         player_1.extras.push(new ExtraDamage('toxin', 2));
-        player_1.doAttack(player_2, 1);
+        player_1.doAttack(player_2, game);
         expect(player_1.life).toEqual(8);
-        player_1.doAttack(player_2, 2);
+        player_1.doAttack(player_2, game);
         expect(player_1.life).toEqual(6);
-        player_1.doAttack(player_2, 3);
+        player_1.doAttack(player_2, game);
         expect(player_1.life).toEqual(4);
     });
 
     it('player should be hurt each round if got fired', function () {
         player_1.extras.push(new ExtraDamage('flame', 2));
-        player_1.doAttack(player_2, 1);
+        player_1.doAttack(player_2, game);
         expect(player_1.life).toEqual(8);
     });
 
     it('player should not attack each 2 round if got frozen', function () {
         player_1.extras.push(new ExtraDamage('frozen'));
-        expect(player_1.doAttack(player_2, 1)).toEqual([]);
-        expect(player_1.doAttack(player_2, 2)).toEqual([]);
-        expect(player_1.doAttack(player_2, 3)).toEqual(['张三冻得直哆嗦, 没有击中李四']);
-        expect(player_1.doAttack(player_2, 4)).toEqual([]);
+        game.round = 1;
+        expect(player_1.doAttack(player_2, game)).toEqual([]);
+        game.round = 2;
+        expect(player_1.doAttack(player_2, game)).toEqual([]);
+        game.round = 3;
+        expect(player_1.doAttack(player_2, game)).toEqual(['张三冻得直哆嗦, 没有击中李四']);
+        game.round = 4;
+        expect(player_1.doAttack(player_2, game)).toEqual([]);
+        game.round = 5;
+        expect(player_1.doAttack(player_2, game)).toEqual([]);
+        game.round = 6;
+        expect(player_1.doAttack(player_2, game)).toEqual(['张三冻得直哆嗦, 没有击中李四']);
     });
 
     it('player should not attack for 2 round got faint', function () {
         player_1.extras.push(new ExtraDamage('faint'));
-        expect(player_1.doAttack(player_2)).toEqual(['张三晕倒了, 无法攻击, 眩晕还剩：1轮']);
-        expect(player_1.doAttack(player_2)).toEqual(['张三晕倒了, 无法攻击, 眩晕还剩：0轮']);
-        expect(player_1.doAttack(player_2)).toEqual([]);
+        expect(player_1.doAttack(player_2, game)).toEqual(['张三晕倒了, 无法攻击, 眩晕还剩：1轮']);
+        expect(player_1.doAttack(player_2, game)).toEqual(['张三晕倒了, 无法攻击, 眩晕还剩：0轮']);
+        expect(player_1.doAttack(player_2, game)).toEqual([]);
     });
 
     it('player should get 3x damage if got strike', function () {
@@ -72,7 +80,7 @@ describe('In level 4 ', function () {
         spyOn(weapon, 'getExtraDamage').and.returnValue(new ExtraDamage('toxin', 2));
         player_2.doDefence(player_1, game);
         expect(player_2.extras.length).toEqual(2);
-        player_2.doAttack(player_1);
+        player_2.doAttack(player_1, game);
         expect(player_2.life).toBe(3);
     });
 

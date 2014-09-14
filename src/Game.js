@@ -12,12 +12,7 @@ Game.prototype.play = function() {
 		var attacker = this.players[this.turn? 0: 1];
 		var defender = this.players[!this.turn? 0: 1];
 
-        if(!Matcher.checkDistance(this.distance, attacker.weapon.range)) {
-            this.distance--;
-            continue;
-        }
-
-        var beforeResult = attacker.doAttack(defender, this.round);
+        var beforeResult = attacker.doAttack(defender, this);
         _(beforeResult).each(function(result) {
             this.console.log(result);
         }, this);
@@ -26,8 +21,10 @@ Game.prototype.play = function() {
             return;
         }
 
-		var afterResult = defender.doDefence(attacker, this.distance);
-		this.console.log(afterResult);
+		var afterResult = defender.doDefence(attacker, this);
+        _(afterResult).each(function(result) {
+            this.console.log(result);
+        }, this);
 
         if(this.checkPlayer(defender)) {
             return;

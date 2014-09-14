@@ -10,6 +10,15 @@ function Player (name, life, attack, role, weapon, shield) {
 }
 
 Player.prototype.doDefence = function (attacker, game) {
+    var result = [];
+    if(!Matcher.checkDistance(game.distance, attacker.weapon.range)) {
+        game.distance--;
+        result.push(Logger.getForward(attacker, this));
+        if(this.role.name != 'knight') {
+            return result;
+        }
+    }
+
 	var raw = attacker.getTotalDamage() - this.getTotalDefence();
 	raw = raw < 0? 0: raw;
     var extra = attacker.getWeaponExtra();
@@ -29,14 +38,16 @@ Player.prototype.doDefence = function (attacker, game) {
     if(this.life <= 0) {
         this.status = 'dead';
     }
-	return this.getDefenceLog(attacker, damage, extra, effect);
+    result.push(this.getDefenceLog(attacker, damage, extra, effect))
+	return result;
 };
 
-Player.prototype.doAttack = function (defender, round) {
+Player.prototype.doAttack = function (defender, game) {
     var result = [];
+
     _(this.extras).each(function(extra) {
         if(typeof(extra.remain) == 'number' && extra.remain <= 0) {}
-        else if(typeof(extra.span) != 'number' || round % extra.span == 0) {
+        else if(typeof(extra.span) != 'number' || game.round % extra.span == 0) {
             this.life -= extra.damage;
             result.push(Logger.getExtraDamage(this, defender, extra));
         }

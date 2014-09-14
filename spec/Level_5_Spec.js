@@ -89,8 +89,14 @@ describe('In level 5 ', function () {
         expect(game.distance).toBe(2);
     });
 
-    it('', function () {
-
+    it('player without attack range must forward first', function () {
+        game.distance = 2;
+        player_1.doDefence(player_2, game);
+        expect(player_1.life).toBe(10);
+        expect(game.distance).toBe(1);
+        player_1.doDefence(player_2, game);
+        expect(player_1.life).toBe(1);
+        expect(game.distance).toBe(1);
     });
 
     it('', function () {

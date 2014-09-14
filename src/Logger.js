@@ -50,3 +50,7 @@ Logger.getEffect = function (attacker, defender, effect, damage) {
 Logger.getDeath = function (player) {
     return player.name + '被打败了.';
 };
+
+Logger.getForward = function (attacker, defender) {
+    return attacker.name + '靠近了' + defender.name + '.';
+};

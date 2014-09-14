@@ -122,19 +122,26 @@ describe('In level 5 ', function () {
         expect(player_2.life).toBe(18);
     });
 
-    it('', function () {
+    it('only assassin could activate double effect', function () {
 
     });
 
-    it('', function () {
+    it('only soldier could activate defence effect', function () {
 
     });
 
-    it('', function () {
+    it('only soldier could activate repel effect', function () {
 
     });
 
-    it('', function () {
-
+    it('game should output right when in double effect', function () {
+        weapon = new Weapon('峨眉刺', 2, 0, 'short');
+        player_1 = new Player('张三', 10, 8, 'assassin', weapon);
+        player_2 = new Player('李四', 20, 9, 'knight');
+        game.setPlayerA(player_1);
+        game.setPlayerB(player_2);
+        spyOn(player_1.weapon, 'getEffect').and.returnValue({ double: true });
+        game.play();
+        expect(console.log).toHaveBeenCalledWith('刺客张三用峨眉刺攻击了骑士李四, 李四受到了10点伤害, 张三发动了连击, 李四受到了10点伤害, 李四剩余生命：0');
     });
 });

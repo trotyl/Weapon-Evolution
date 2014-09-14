@@ -107,8 +107,11 @@ describe('In level 5 ', function () {
         expect(game.distance).toBe(1);
     });
 
-    it('', function () {
-
+    it('double attack could cause double attack', function () {
+        player_1.setWeapon(weapon);
+        spyOn(player_1.weapon, 'getEffect').and.returnValue({ double: true });
+        player_2.doDefence(player_1, game);
+        expect(player_2.life).toBe(0);
     });
 
     it('', function () {

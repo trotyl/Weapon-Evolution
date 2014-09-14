@@ -98,7 +98,7 @@ Player.prototype.setWeapon = function(weapon) {
     if(!Matcher.checkWeapon(this.role, weapon.type)) {
         return;
     }
-    this.weapon = _.cloneDeep(weapon);
+    this.weapon = weapon;
 };
 
 Player.prototype.setShield = function(shield) {

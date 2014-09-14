@@ -99,8 +99,12 @@ describe('In level 5 ', function () {
         expect(game.distance).toBe(1);
     });
 
-    it('', function () {
-
+    it('knight can both forward and attack', function () {
+        var player = new Player('', 10, 2, 'knight');
+        game.distance = 2;
+        player_1.doDefence(player, game);
+        expect(player_1.life).toBe(8);
+        expect(game.distance).toBe(1);
     });
 
     it('', function () {

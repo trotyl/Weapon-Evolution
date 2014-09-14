@@ -1,4 +1,4 @@
-describe('In level 4 ', function () {
+describe('In level 5 ', function () {
     var console, game, player_1, player_2, weapon;
 
     beforeEach(function () {
@@ -37,8 +37,39 @@ describe('In level 4 ', function () {
         expect(player.weapon.type).toEqual('null');
     });
 
-    it('', function () {
+    it('soldier can wear medium weapon', function () {
+        var player = new Player('', 0, 0, 'soldier');
+        var short_weapon = new Weapon('short_weapon', 0, 'short');
+        var medium_weapon = new Weapon('medium_weapon', 0, 'medium');
+        var long_weapon = new Weapon('long_weapon', 0, 'long');
+        player.setWeapon(short_weapon);
+        expect(player.weapon.type).toEqual('null');
+        player.removeWeapon();
+        player.setWeapon(medium_weapon);
+        expect(player.weapon.name).toEqual('medium_weapon');
+        player.removeWeapon();
+        player.setWeapon(long_weapon);
+        expect(player.weapon.type).toEqual('null');
+    });
 
+    it('knight can wear medium and long weapon', function () {
+        var player = new Player('', 0, 0, 'soldier');
+        var short_weapon = new Weapon('short_weapon', 0, 'short');
+        var medium_weapon = new Weapon('medium_weapon', 0, 'medium');
+        var long_weapon = new Weapon('long_weapon', 0, 'long');
+        player.setWeapon(short_weapon);
+        expect(player.weapon.type).toEqual('null');
+        player.removeWeapon();
+        player.setWeapon(medium_weapon);
+        expect(player.weapon.name).toEqual('medium_weapon');
+        player.removeWeapon();
+        player.setWeapon(long_weapon);
+        expect(player.weapon.name).toEqual('long_weapon');
+    });
+
+    it('normal one can not wear weapon', function () {
+        var player = new Player('', 0, 0, 'normal');
+        
     });
 
     it('', function () {

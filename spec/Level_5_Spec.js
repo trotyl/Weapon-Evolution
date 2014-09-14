@@ -157,4 +157,16 @@ describe('In level 5 ', function () {
         expect(console.log).toHaveBeenCalledWith('刺客张三用冰雪峨眉刺攻击了骑士李四, 李四受到了8点伤害, 李四冻僵了, 张三发动了连击, 李四受到了8点伤害, 李四剩余生命：4');
     });
 
+    it('game should output right when in repel effect', function () {
+        weapon = new Weapon('长枪', 0, 0, 'long');
+        player_1 = new Player('张三', 10, 8, 'knight', weapon);
+        player_2 = new Player('李四', 20, 9, 'assassin');
+        game.setPlayerA(player_1);
+        game.setPlayerB(player_2);
+        spyOn(player_1.weapon, 'getEffect').and.returnValue({ repel: true });
+        game.play();
+        expect(console.log).toHaveBeenCalledWith('骑士张三用长枪攻击了刺客李四, 李四受到了8点伤害, 李四被击退了, 李四剩余生命：12');
+        expect(console.log).toHaveBeenCalledWith('李四靠近了张三.');
+    });
+
 });

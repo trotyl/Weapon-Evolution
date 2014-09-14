@@ -14,7 +14,7 @@ Player.prototype.doDefence = function (attacker, game) {
     if(!Matcher.checkDistance(game.distance, attacker.weapon.range)) {
         game.distance--;
         result.push(Logger.getForward(attacker, this));
-        if(this.role.name != 'knight') {
+        if(attacker.role.name != 'knight') {
             return result;
         }
     }
@@ -38,7 +38,7 @@ Player.prototype.doDefence = function (attacker, game) {
     if(this.life <= 0) {
         this.status = 'dead';
     }
-    result.push(this.getDefenceLog(attacker, damage, extra, effect))
+    result.push(this.getDefenceLog(attacker, damage, extra, effect));
 	return result;
 };
 

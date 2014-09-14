@@ -9,7 +9,7 @@ function Player (name, life, attack, role, weapon, shield) {
     this.extras = [];
 }
 
-Player.prototype.doDefence = function (attacker, distance) {
+Player.prototype.doDefence = function (attacker, game) {
 	var raw = attacker.getTotalDamage() - this.getTotalDefence();
 	raw = raw < 0? 0: raw;
     var extra = attacker.getWeaponExtra();
@@ -17,7 +17,7 @@ Player.prototype.doDefence = function (attacker, distance) {
 
     var effect = attacker.weapon.getEffect();
     if(effect && effect.repel) {
-        distance++;
+        game.distance++;
         this.life -= damage;
     }
     else if(effect && effect.double) {

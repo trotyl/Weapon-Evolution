@@ -83,9 +83,9 @@ describe('In level 5 ', function () {
     });
 
     it('long weapon have repel property and can attack with distance 2', function () {
-        spyOn(weapon, 'getEffect').and.returnValue({ repel: true });
+        spyOn(player_1.weapon, 'getEffect').and.returnValue({ repel: true });
         game.distance = 1;
-        player_2.doDefence(player_1, game.distance);
+        player_2.doDefence(player_1, game);
         expect(game.distance).toBe(2);
     });
 

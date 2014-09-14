@@ -49,7 +49,7 @@ describe('In level 4 ', function () {
 
     it('player should get 3x damage if got strike', function () {
         spyOn(weapon, 'getExtraDamage').and.returnValue(new ExtraDamage('strike'));
-        player_2.doDefence(player_1);
+        player_2.doDefence(player_1, game);
         expect(player_2.life).toEqual(-10);
     });
 
@@ -63,14 +63,14 @@ describe('In level 4 ', function () {
     it('player should only got 1 type of extra damage', function () {
         player_2.extras.push(new ExtraDamage('toxin', 5));
         spyOn(weapon, 'getExtraDamage').and.returnValue(new ExtraDamage('flame', 2));
-        player_2.doDefence(player_1);
+        player_2.doDefence(player_1, game);
         expect(player_2.extras.length).toEqual(1);
     });
 
     it('player could get more than one same type of extra damage', function () {
         player_2.extras.push(new ExtraDamage('toxin', 5));
         spyOn(weapon, 'getExtraDamage').and.returnValue(new ExtraDamage('toxin', 2));
-        player_2.doDefence(player_1);
+        player_2.doDefence(player_1, game);
         expect(player_2.extras.length).toEqual(2);
         player_2.doAttack(player_1);
         expect(player_2.life).toBe(3);
@@ -79,7 +79,7 @@ describe('In level 4 ', function () {
     it('player \'s extra damage should not be affect by strike', function () {
         player_1.extras.push(new ExtraDamage('toxin', 5));
         spyOn(weapon, 'getExtraDamage').and.returnValue(new ExtraDamage('strike'));
-        player_1.doDefence(player_2);
+        player_1.doDefence(player_2, game);
         expect(player_1.extras.length).toEqual(1);
         expect(player_1.extras[0].type).toEqual('toxin');
     });

@@ -38,9 +38,10 @@ Weapon.initEffect = function (type) {
         },
         short: {
             double: true
-        }
+        },
+        null: {}
     };
-    return map[type];
+    return map[type] || {};
 };
 
 Weapon.initRange = function (type) {
@@ -50,5 +51,5 @@ Weapon.initRange = function (type) {
         short: 1,
         null: 1
     };
-    return map[type];
+    return map[type] || 1;
 };

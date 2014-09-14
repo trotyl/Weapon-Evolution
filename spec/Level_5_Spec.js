@@ -114,8 +114,12 @@ describe('In level 5 ', function () {
         expect(player_2.life).toBe(0);
     });
 
-    it('', function () {
-
+    it('weapon defence will cause the attack hurt', function () {
+        weapon.defence = 2;
+        player_1.setWeapon(weapon);
+        spyOn(player_1.weapon, 'getEffect').and.returnValue({ defence: true });
+        player_1.doDefence(player_2, game);
+        expect(player_2.life).toBe(18);
     });
 
     it('', function () {

@@ -24,19 +24,28 @@ Player.prototype.doDefence = function (attacker, game) {
     var extra = attacker.getWeaponExtra();
     var damage = this.getExtraDamage(extra, raw);
 
-    var effect = attacker.weapon.getEffect();
-    if(effect && effect.repel) {
+    var effect = attacker.weapon.getEffect() || {};
+    var localEffect = this.weapon.getEffect() || {};
+    effect = _(effect).assign(localEffect).value();
+    if(effect.repel) {
         game.distance++;
         this.life -= damage;
     }
-    else if(effect && effect.double) {
+    else if(effect.double) {
         this.life -= damage * 2;
     }
     else {
         this.life -= damage;
     }
+    if(effect.defence) {
+        attacker.life -= this.weapon.defence;
+    }
+
     if(this.life <= 0) {
         this.status = 'dead';
+    }
+    if(attacker.life <= 0) {
+        attacker.status = 'dead';
     }
     result.push(this.getDefenceLog(attacker, damage, extra, effect));
 	return result;

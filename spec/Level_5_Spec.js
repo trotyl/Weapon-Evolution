@@ -5,7 +5,7 @@ describe('In level 5 ', function () {
         console = {log: null};
         spyOn(console, 'log');
 
-        weapon = new Weapon('优质毒剑', 2, 'medium');
+        weapon = new Weapon('优质毒剑', 2, 0, 'medium');
         player_1 = new Player('张三', 10, 8, 'soldier');
         player_2 = new Player('李四', 20, 9, 'normal');
         game = new Game(console, player_1, player_2);
@@ -24,9 +24,9 @@ describe('In level 5 ', function () {
 
     it('assassin can wear short and medium weapon', function () {
         var player = new Player('', 0, 0, 'assassin');
-        var short_weapon = new Weapon('short_weapon', 0, 'short');
-        var medium_weapon = new Weapon('medium_weapon', 0, 'medium');
-        var long_weapon = new Weapon('long_weapon', 0, 'long');
+        var short_weapon = new Weapon('short_weapon', 0, 0, 'short');
+        var medium_weapon = new Weapon('medium_weapon', 0, 0, 'medium');
+        var long_weapon = new Weapon('long_weapon', 0, 0, 'long');
         player.setWeapon(short_weapon);
         expect(player.weapon.name).toEqual('short_weapon');
         player.removeWeapon();
@@ -39,9 +39,9 @@ describe('In level 5 ', function () {
 
     it('soldier can wear medium weapon', function () {
         var player = new Player('', 0, 0, 'soldier');
-        var short_weapon = new Weapon('short_weapon', 0, 'short');
-        var medium_weapon = new Weapon('medium_weapon', 0, 'medium');
-        var long_weapon = new Weapon('long_weapon', 0, 'long');
+        var short_weapon = new Weapon('short_weapon', 0, 0, 'short');
+        var medium_weapon = new Weapon('medium_weapon', 0, 0, 'medium');
+        var long_weapon = new Weapon('long_weapon', 0, 0, 'long');
         player.setWeapon(short_weapon);
         expect(player.weapon.type).toEqual('null');
         player.removeWeapon();
@@ -54,9 +54,9 @@ describe('In level 5 ', function () {
 
     it('knight can wear medium and long weapon', function () {
         var player = new Player('', 0, 0, 'knight');
-        var short_weapon = new Weapon('short_weapon', 0, 'short');
-        var medium_weapon = new Weapon('medium_weapon', 0, 'medium');
-        var long_weapon = new Weapon('long_weapon', 0, 'long');
+        var short_weapon = new Weapon('short_weapon', 0, 0, 'short');
+        var medium_weapon = new Weapon('medium_weapon', 0, 0, 'medium');
+        var long_weapon = new Weapon('long_weapon', 0, 0, 'long');
         player.setWeapon(short_weapon);
         expect(player.weapon.type).toEqual('null');
         player.removeWeapon();
@@ -69,9 +69,9 @@ describe('In level 5 ', function () {
 
     it('normal one can not wear weapon', function () {
         var player = new Player('', 0, 0, 'normal');
-        var short_weapon = new Weapon('short_weapon', 0, 'short');
-        var medium_weapon = new Weapon('medium_weapon', 0, 'medium');
-        var long_weapon = new Weapon('long_weapon', 0, 'long');
+        var short_weapon = new Weapon('short_weapon', 0, 0, 'short');
+        var medium_weapon = new Weapon('medium_weapon', 0, 0, 'medium');
+        var long_weapon = new Weapon('long_weapon', 0, 0, 'long');
         player.setWeapon(short_weapon);
         expect(player.weapon.type).toEqual('null');
         player.removeWeapon();
@@ -118,4 +118,19 @@ describe('In level 5 ', function () {
 
     });
 
+    it('', function () {
+
+    });
+
+    it('', function () {
+
+    });
+
+    it('', function () {
+
+    });
+
+    it('', function () {
+
+    });
 });

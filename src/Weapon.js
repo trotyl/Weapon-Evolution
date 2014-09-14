@@ -1,6 +1,7 @@
-function Weapon (name, damage, type, extras) {
+function Weapon (name, damage, defence, type, extras) {
 	this.name = name;
 	this.damage = damage;
+    this.defence = defence;
     this.type = type;
 	this.extras = extras || [];
     this.effect = Weapon.initEffect(type);
@@ -8,7 +9,7 @@ function Weapon (name, damage, type, extras) {
 }
 
 Weapon.none = function() {
-    return new Weapon(null, 0, 'null', []);
+    return new Weapon(null, 0, 0, 'null', []);
 };
 
 Weapon.prototype.getExtraDamage = function() {
@@ -32,7 +33,9 @@ Weapon.initEffect = function (type) {
         long: {
             repel: true
         },
-        medium: {},
+        medium: {
+            defence: true
+        },
         short: {
             double: true
         }

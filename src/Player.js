@@ -81,9 +81,11 @@ Player.prototype.getTotalDefence = function () {
 };
 
 Player.prototype.getDefenceLog = function(attacker, damage, extra, effect) {
+    var detailMessage = Logger.getDetails(attacker, this, damage, extra);
+    var effectMessage = Logger.getEffect(attacker, this, effect, damage);
 	return Logger.getBeats(attacker, this) +
-		Logger.getDetails(attacker, this, damage, extra) +
-        Logger.getEffect(attacker, this, effect, damage) +
+		detailMessage +
+        (effectMessage? effectMessage + detailMessage: '') +
 		Logger.getRemain(this);
 };
 

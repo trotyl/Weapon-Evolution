@@ -1,4 +1,4 @@
-function Extra (type, damage) {
+function ExtraDamage (type, damage) {
     var extraMap = {
         toxin:{
             name: '毒性',

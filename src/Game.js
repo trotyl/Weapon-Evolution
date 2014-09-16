@@ -4,51 +4,55 @@ function Game (console, player_1, player_2) {
 	this.turn = true;
 	this.status = 'run';
 	this.round = 1;
+    this.distance = 1;
 }
 
 Game.prototype.play = function() {
-	while(this.status == 'run' && this.round < 10) {
+	while(this.status == 'run' && this.round < 100) {
 		var attacker = this.players[this.turn? 0: 1];
 		var defender = this.players[!this.turn? 0: 1];
 
-        var beforeResult = attacker.doAttack(defender, this.round);
-        if(beforeResult) {
-            for(var i in beforeResult) {
-                this.console.log(beforeResult[i]);
-            }
-        }
+        var beforeResult = attacker.doAttack(defender, this);
+        _(beforeResult).each(function(result) {
+            this.console.log(result);
+        }, this);
 
-        if(attacker.status != 'alive') {
-            this.status = 'over';
-            this.console.log(Log.getDeath(attacker));
+        if(this.checkPlayer(attacker)) {
             return;
         }
 
-		var afterResult = defender.getHurt(attacker);
-		this.console.log(afterResult);
+		var afterResult = defender.doDefence(attacker, this);
+        _(afterResult).each(function(result) {
+            this.console.log(result);
+        }, this);
 
-		if(defender.status != 'alive') {
-            this.status = 'over';
-            this.console.log(Log.getDeath(defender));
+        if(this.checkPlayer(defender)) {
             return;
-		}
-		this.turn = !this.turn;
-        this.round++;
+        }
+
+        this.goingOn();
 	}
 };
 
-Game.getLog = function(attacker, defender) {
-	var result = attacker.role + attacker.name;
-	if(attacker.weapon) {
-		result += '用' + attacker.weapon.name;
-	}
-	result += '攻击了' + defender.role + defender.name + ',' + defender.name + '受到了' 
-		+ Game.getDamage(attacker,defender) + '点伤害,' + defender.name + '剩余生命：' + defender.life;
-	return result;
+Game.prototype.checkPlayer = function (player) {
+    if(player.status != 'alive') {
+        this.status = 'over';
+        this.console.log(Logger.getDeath(player));
+        return true;
+    }
 };
 
-Game.getDamage = function (attacker, defender) {
-	return attacker.attack 
-		+ (attacker.weapon? attacker.weapon.damage: 0) 
-		- (defender.shield? defender.shield.defence: 0);
+Game.prototype.goingOn = function () {
+    this.turn = !this.turn;
+    this.round++;
+};
+
+//保留功能
+
+Game.prototype.setPlayerA = function(player) {
+    this.players[0] = player;
+};
+
+Game.prototype.setPlayerB = function(player) {
+    this.players[1] = player;
 };

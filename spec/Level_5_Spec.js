@@ -169,4 +169,16 @@ describe('In level 5 ', function () {
         expect(console.log).toHaveBeenCalledWith('李四靠近了张三.');
     });
 
+    it('game should output right when in defence effect', function () {
+        weapon_1 = new Weapon('长枪', 0, 0, 'long');
+        weapon_2 = new Weapon('未命名', 0, 0, 'medium');
+        player_1 = new Player('张三', 10, 8, 'knight', weapon_1);
+        player_2 = new Player('李四', 20, 9, 'soldier', weapon_2);
+        game.setPlayerA(player_1);
+        game.setPlayerB(player_2);
+        spyOn(player_1.weapon, 'getEffect').and.returnValue({ defence: true });
+        game.play();
+        expect(console.log).toHaveBeenCalledWith('骑士张三用长枪攻击了战士李四, 李四受到了8点伤害, 李四发动了隔挡反击, 张三受到了9点伤害, 李四剩余生命：12, 张三剩余生命：10');
+    });
+
 });

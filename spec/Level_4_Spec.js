@@ -63,6 +63,7 @@ describe('In level 4 ', function () {
 
     it('game should output a attack with extra attribute', function() {
         spyOn(weapon, 'getExtraDamage').and.returnValue(new ExtraDamage('toxin', 2));
+        spyOn(player_1.weapon, 'getEffect').and.returnValue({});
         game.play();
         expect(console.log).toHaveBeenCalledWith('战士张三用优质毒剑攻击了普通人李四, 李四受到了10点伤害, 李四中毒了, 李四剩余生命：10');
         expect(console.log).toHaveBeenCalledWith('李四受到2点毒性伤害, 李四剩余生命：8');

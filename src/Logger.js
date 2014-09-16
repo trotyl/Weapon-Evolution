@@ -42,7 +42,10 @@ Logger.getEffect = function (attacker, defender, effect, damage) {
         return defender.name + '被击退了, ';
     }
     if(effect.double) {
-        return attacker.name + '发动了连击, ' + defender.name + '受到了' + damage + '点伤害, ';
+        return attacker.name + '发动了连击, ' + defender.name + '受到了' + damage[0] + '点伤害, ';
+    }
+    if(effect.defence) {
+        return defender.name + '发动了隔挡反击, ' + attacker.name + '受到了' + damage[1] + '点伤害, ';
     }
     return '';
 };

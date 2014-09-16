@@ -91,11 +91,15 @@ Player.prototype.getTotalDefence = function () {
 
 Player.prototype.getDefenceLog = function(attacker, damage, extra, effect) {
     var detailMessage = Logger.getDetails(attacker, this, damage, extra);
-    var effectMessage = Logger.getEffect(attacker, this, effect, damage);
-	return Logger.getBeats(attacker, this) +
+    var effectMessage = Logger.getEffect(attacker, this, effect, [damage, this.getTotalDamage()]);
+	var result = Logger.getBeats(attacker, this) +
 		detailMessage +
         effectMessage +
 		Logger.getRemain(this);
+    if(effect && effect.defence) {
+        result += ', ' + Logger.getRemain(attacker);
+    }
+    return result;
 };
 
 //保留功能

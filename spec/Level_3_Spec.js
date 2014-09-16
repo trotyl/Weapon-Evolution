@@ -9,6 +9,7 @@ describe('In level 3 ', function () {
         player_1 = new Player('张三', 10, 8, 'soldier', weapon);
         player_2 = new Player('李四', 20, 9, 'normal');
         game = new Game(console, player_1, player_2);
+        spyOn(player_1.weapon, 'getEffect').and.returnValue({});
     });
 
     it('player can have role property', function () {
